@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { Status } from '@/types/status';
 
 const statusSlice = createSlice({
   name: 'status',
-  initialState: { status: 'loaded' },
+  initialState: 'loaded',
   reducers: {
-    setStatus: (state, action) => state.status = action.payload,
+    setStatus: (state, action: PayloadAction<Status>) => state = action.payload,
   }
 });
 
