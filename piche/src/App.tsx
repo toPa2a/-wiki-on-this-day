@@ -1,15 +1,20 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import Button from '@/components/Button/Button';
 import List from '@/components/List/List';
 
 import './App.css';
 
 function App() {
+  const queryClient = new QueryClient();
 
   return (
-    <div className='wiki-app'>
-      <Button />
-      <List />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className='wiki-app'>
+        <Button />
+        <List />
+      </div>
+    </QueryClientProvider>
   )
 }
 
