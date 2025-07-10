@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'; 
 import { useQuery } from '@tanstack/react-query';
 
@@ -13,8 +14,11 @@ const Button = () => {
     enabled: false,
   });
 
+  useEffect(() => {
+    if (data) dispatch(eventsAdded(data));
+  }, [data, dispatch]);
+
   if (isSuccess && data) {
-    dispatch(eventsAdded(data));
     dispatch(setStatus('loaded'));
   }
 
