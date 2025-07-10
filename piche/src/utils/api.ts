@@ -8,6 +8,10 @@ class WikiApi {
 
     return await (await fetch(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/${day}/${month}`)).json();
   }
+
+  getBaseUrl() {
+    return 'https://en.wikipedia.org/wiki/';
+  }
 }
 
 export const wikiApi = new WikiApi();

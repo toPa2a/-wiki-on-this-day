@@ -1,19 +1,31 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { Item } from '@/types/item';
+import type { Item, Items } from '@/types/items';
 
 const todayEventsSlice = createSlice({
   name: 'todayEvents',
-  initialState: {},
+  initialState: {} as Items,
   reducers: {
     eventsAdded: {
-      reducer(state, action: PayloadAction<Item>) {
-        console.log(action.payload);
-        state = action.payload;
+      reducer(state, action: PayloadAction<Items>) {
+        return action.payload;
       },
       prepare(resp) {
-        
+        const listOfItems: Items = {};
+        const keys = Object.keys(resp);
 
-        return { payload: resp };
+        keys.forEach(key => {
+          const uniqueTexts: Array<string> = [];
+
+          listOfItems[key] = resp[key].filter((item: Item) => {
+            if (uniqueTexts.includes(item.text)) return false;
+
+            uniqueTexts.push(item.text);
+            return true;
+          });
+          listOfItems[key] = listOfItems[key].sort((a:Item, b:Item) => b.year - a.year);
+        });
+
+        return { payload: listOfItems };
       },
     },
   },
