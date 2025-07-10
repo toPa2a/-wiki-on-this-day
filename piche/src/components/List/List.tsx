@@ -21,10 +21,10 @@ const List = () => {
   const status = useSelector(getStatus);
   const isEmpty = Object.keys(events).length === 0;
 
-  return !isEmpty && (
+  return (
     <div className="events-list">
       {status === 'loading' && <Loader />}
-      {eventTypes.map(type => events[type].length > 0 && (
+      {!isEmpty && eventTypes.map(type => events[type].length > 0 && (
         <div key={type}>
           <h2>{type.toUpperCase()}</h2>
 
