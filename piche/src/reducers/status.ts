@@ -10,4 +10,5 @@ const statusSlice = createSlice({
 });
 
 export const { setStatus } = statusSlice.actions;
+export const getStatus = (state: { status: Status }) => state.status;
 export default statusSlice.reducer;

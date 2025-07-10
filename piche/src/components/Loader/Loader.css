@@ -1,0 +1,23 @@
+.loader {
+  align-items: center;
+  background-color: rgba(255,255,255,.4);
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  gap: 1rem;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.loader__animation {
+  animation: l1 1s steps(4) infinite;
+  aspect-ratio: 4;
+  background: radial-gradient(circle closest-side,#000 90%,#0000) 0/calc(100%/3) 100% space;
+  clip-path: inset(0 100% 0 0);
+  width: 60px;
+}
+@keyframes l1 {to{clip-path: inset(0 -34% 0 0)}}
