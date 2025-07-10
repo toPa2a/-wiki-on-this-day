@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { eventsAdded } from '@/reducers/this-day';
 import { setStatus } from '@/reducers/status';
+import { setError } from '@/reducers/error';
 import { wikiApi } from '@/utils/api';
 
 const Button = () => {
@@ -15,18 +16,17 @@ const Button = () => {
   });
 
   useEffect(() => {
-    if (data) dispatch(eventsAdded(data));
-  }, [data, dispatch]);
-
-  if (isSuccess && data) {
-    dispatch(setStatus('loaded'));
-  }
-
-  if (isFetching) dispatch(setStatus('loading'));
-  
-  if (error) {
-    dispatch(setStatus('error'));
-  }
+    if (data && isSuccess) {
+      dispatch(eventsAdded(data));
+      dispatch(setStatus('loaded'));
+      dispatch(setError(null));
+    } else if (isFetching) {
+      dispatch(setStatus('loading'));
+    } else if (error) {
+      dispatch(setStatus('error'));
+      dispatch(setError(error));
+    }
+  }, [data, isSuccess, isFetching, error, dispatch]);
 
   const getEvents = () => {
     refetch();
