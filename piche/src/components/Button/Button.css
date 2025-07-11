@@ -1,0 +1,8 @@
+.button-wrapper {
+  margin-block-end: 15px;
+  text-align: center;
+}
+
+.button-wrapper button {
+  margin-inline: auto;
+}
