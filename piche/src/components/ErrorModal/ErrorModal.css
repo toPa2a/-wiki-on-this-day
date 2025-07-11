@@ -1,0 +1,9 @@
+.ReactModal__Content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ReactModal__Content button {
+  align-self: flex-end;
+}

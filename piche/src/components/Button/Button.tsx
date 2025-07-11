@@ -7,6 +7,8 @@ import { setStatus } from '@/reducers/status';
 import { setError } from '@/reducers/error';
 import { wikiApi } from '@/utils/api';
 
+import './Button.css';
+
 const Button = () => {
   const dispatch = useDispatch();
   const { data, isFetching, isSuccess, error, refetch } = useQuery({
@@ -33,7 +35,9 @@ const Button = () => {
   }
 
   return (
-    <button onClick={getEvents} disabled={isFetching}>Get on This Date</button>
+    <div className="button-wrapper">
+      <button onClick={getEvents} disabled={isFetching}>Get on This Date</button>
+    </div>
   )
 }
 

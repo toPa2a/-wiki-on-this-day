@@ -26,11 +26,13 @@ const List = () => {
       {status === 'loading' && <Loader />}
       {!isEmpty && eventTypes.map(type => events[type].length > 0 && (
         <div key={type}>
-          <h2>{type.toUpperCase()}</h2>
+          <h2>{type}</h2>
 
-          {events[type]?.map((event: Item, i: number) => (
-            <ListItem key={`${i}-${event.year}-${type}`} event={event} />
-          ))}
+          <ul>
+            {events[type]?.map((event: Item, i: number) => (
+              <ListItem key={`${i}-${event.year}-${type}`} event={event} />
+            ))}
+          </ul>
         </div>
       ))}
     </div>

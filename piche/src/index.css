@@ -1,6 +1,6 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: sans-serif;
+  line-height: 1.6;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -11,21 +11,31 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --bg-color: #f5faff;
+  --border-color: #cedff2;
+  --font-color: #202122;
+  --link-color: #36c;
+  --link-visited-color: #6a60b0;
+  --title-border-color: #a3b0bf;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: var(--link-color);
+  text-decoration: none;
 }
+
 a:hover {
-  color: #535bf2;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--link-visited-color);
 }
 
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }

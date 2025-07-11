@@ -63,13 +63,13 @@ const ListItem = ({ event }: { event: Item }) => {
   const delimiter = event.year ? ' - ' : '';
 
   return (
-    <div className="event-item">
+    <li className="event-item">
       {year}
       {delimiter}
       <span className='event-item__text'>
         {replaceWithLinks(event.text, event.pages)}
       </span>
-    </div>
+    </li>
   );
 };
 
