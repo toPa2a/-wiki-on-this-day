@@ -12,10 +12,10 @@ const errorSlice = createSlice({
       },
       prepare(err: Error | null) {
         if (err) {
-          return { payload: err.message };
+          return { payload: err.message as string };
         }
 
-        return { payload: err };
+        return { payload: err as null };
       },
     },
   }
@@ -23,4 +23,5 @@ const errorSlice = createSlice({
 
 export const { setError } = errorSlice.actions;
 export const getError = (state: { error: Err }) => state.error;
+export { type Err };
 export default errorSlice.reducer;

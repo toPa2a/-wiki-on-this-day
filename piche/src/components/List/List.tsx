@@ -2,24 +2,17 @@ import { useSelector } from 'react-redux';
 
 import ListItem from '../ListItem/ListItem';
 import Loader from '../Loader/Loader';
-import { getEvents } from '@/reducers/this-day';
-import { getStatus } from '@/reducers/status';
+import { getEvents } from '@/slices/this-day';
+import { getStatus } from '@/slices/status';
 import type { Items, Item } from '@/types/items';
 
 import './List.css';
-
-const eventTypes = [
-  'selected',
-  'births',
-  'deaths',
-  'events',
-  'holidays',
-];
 
 const List = () => {
   const events = useSelector(getEvents) as Items;
   const status = useSelector(getStatus);
   const isEmpty = Object.keys(events).length === 0;
+  const eventTypes = Object.keys(events);
 
   return (
     <div className="events-list">

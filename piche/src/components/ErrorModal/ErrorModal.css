@@ -1,7 +1,29 @@
-.ReactModal__Content {
+.error-modal {
+  align-items: center;
+  background-color: rgba(0,0,0,.4);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+
+  & button {
+    align-self: flex-end;
+  }
+}
+
+.error-modal__inner {
+  align-items: center;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  width: 270px;
 }
 
 .ReactModal__Content button {
