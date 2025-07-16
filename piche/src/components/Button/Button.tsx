@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'; 
 import { useQuery } from '@tanstack/react-query';
 
-import { eventsAdded } from '@/reducers/this-day';
-import { setStatus } from '@/reducers/status';
-import { setError } from '@/reducers/error';
+import { eventsAdded } from '@/slices/this-day';
+import { setStatus } from '@/slices/status';
+import { setError } from '@/slices/error';
 import { wikiApi } from '@/utils/api';
 
 import './Button.css';

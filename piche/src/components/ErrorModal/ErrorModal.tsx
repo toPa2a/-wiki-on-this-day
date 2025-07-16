@@ -1,47 +1,45 @@
-import { useEffect, useState } from 'react';
-import Modal from 'react-modal';
-import { useSelector } from 'react-redux';
+import { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { getStatus } from '@/reducers/status';
-import { getError } from '@/reducers/error';
+import { getStatus, setStatus } from '@/slices/status';
+import { getError, setError } from '@/slices/error';
 
 import './ErrorModal.css';
 
-Modal.setAppElement('#root');
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    borderColor: 'var(--border-color)',
-    borderRadius: 0,
-    backgroundColor: 'var(--bg-color)',
-  },
-};
-
 const ErrorModal = () => {
-  const status = useSelector(getStatus);
+	const status = useSelector(getStatus);
   const error = useSelector(getError);
   const [isOpen, setIsOpen] = useState(status === 'error');
+	const dispatch = useDispatch();
+
+	const closeModal = useCallback(() => {
+		dispatch(setError(null));
+		dispatch(setStatus('loaded'));
+		setIsOpen(false);
+	}, []);
 
   useEffect(() => {
-    setIsOpen(status === 'error');
-  }, [status]);
+		if (status === 'error') setIsOpen(true);
 
-  return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={() => setIsOpen(false)}
-      style={customStyles}
-    >
-      <button onClick={() => setIsOpen(false)} aria-label="Close Modal">&#10005;</button>
-      {error}
-    </Modal>
-  );
+    const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') {
+				closeModal();
+			}
+		};
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [status, error]);
+
+	return isOpen && (
+		<div className="error-modal">
+			<div className="error-modal__inner">
+				<button onClick={closeModal} aria-label="Close Modal">&#10005;</button>
+				{error}
+			</div>
+		</div>
+	);
 };
 
 export default ErrorModal;

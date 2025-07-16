@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import todayEventsReducer from '@/reducers/this-day';
-import statusReducer from '@/reducers/status';
-import errorReducer from '@/reducers/error';
+import todayEventsReducer from '@/slices/this-day';
+import statusReducer from '@/slices/status';
+import errorReducer from '@/slices/error';
 
 export const store = configureStore({
   preloadedState: {},
