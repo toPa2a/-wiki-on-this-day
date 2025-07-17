@@ -11,8 +11,8 @@ import './List.css';
 const List = () => {
   const events = useSelector(getEvents) as Items;
   const status = useSelector(getStatus);
-  const isEmpty = Object.keys(events).length === 0;
   const eventTypes = Object.keys(events);
+  const isEmpty = eventTypes.length === 0;
 
   return (
     <div className="events-list">
